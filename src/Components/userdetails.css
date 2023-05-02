@@ -1,0 +1,16 @@
+.maincontentuser{
+    height:100px;
+}
+.leftuser{
+    display: flex;
+    justify-content: space-around;
+}
+.carduser{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.leftuser img{
+    margin:20px;
+    height:100px;
+}

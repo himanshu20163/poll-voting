@@ -1,0 +1,9 @@
+.container-fluid.h-custom {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+section {
+    background-size: cover;
+    height: calc(100vh);
+}
