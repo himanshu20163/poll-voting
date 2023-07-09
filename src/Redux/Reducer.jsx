@@ -1,16 +1,17 @@
 const initialdata = {
-    alluserdata:[]
+    alldishdata:[],
  }
  
- const Reducer = (storedata=initialdata,action) => {
-   if (action.type === "alluserdata") {
-     return {...storedata,
-        alluserdata:action.payload
-     }
-   
- }
- 
- return storedata;
+ const Reducer = (state=initialdata,action) => {
+   switch(action.type){
+      case "alldishdata" :
+         state = {
+            ...state,
+            alldishdata:action.payload,
+         }
+         break;
+   }
+ return state;
  }
  
  export default Reducer

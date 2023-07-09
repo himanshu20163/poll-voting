@@ -3,18 +3,17 @@ import './login.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { useState } from 'react';
-import { mygithubsavedata } from '../Redux/Action_creator';
+import axios from 'axios';
 
 const Login = ({setlogincheck}) => {
 
-    const dispatch = useDispatch()
-    const [email, setemail] = useState("");
+    const [username, setusername] = useState("");
     const [password, setpassword] = useState("");
     const [profiledata , setprofiledata] = useState({});
 
     // check details
     function check_details() {
-        if (email != "" && password != "") {
+        if (username != "" && password != "") {
             alert("Login Successful");
             return true;
         }
@@ -24,96 +23,55 @@ const Login = ({setlogincheck}) => {
         }
     }
     // profile send data
-    const profilesenddata = async()=>{
-        check_details();
-        if( check_details() == false){
-            setlogincheck(false)
-        }
-        else{
-        const res = await fetch(`https://api.github.com/users/${email}`)
-        const data = await res.json()
-        setprofiledata(data)
-       
-        dispatch(mygithubsavedata(data))
-         setlogincheck(true)
-        }
-    }
-
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      try {
+        // Make a POST request to add a new user
+        const response = await axios.post('http://localhost:4000/users', {
+          username,
+          password
+        });
+        console.log(response.data); // Log the newly created user object
+        setusername(''); // Clear the input fields
+        setpassword('');
+            if( check_details() == false){
+                setlogincheck(false)
+            }
+            else{
+              setlogincheck(true);
+            }
+      } catch (error) {
+        console.error(error);
+      }
+    };
      // login form design 
   return (
     <section >
-  <div class="container-fluid h-custom">
-    <div class="row d-flex justify-content-center align-items-center w-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          class="img-fluid" alt="Sample image" />
-      </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form>
+  <div class="wrapper fadeInDown">
+  <div id="formContent">
 
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0">Or</p>
-          </div>
-
-          {/* <!-- Email input --> */}
-          <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter a valid email address"  onChange={(e)=>{setemail(e.target.value)}}/>
-            <label class="form-label" for="form3Example3">Email address</label>
-          </div>
-
-          {/* <!-- Password input --> */}
-          <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter password" onChange={(e)=>{setpassword(e.target.value)}}/>
-            <label class="form-label" for="form3Example4">Password</label>
-          </div>
-
-          <div class="d-flex justify-content-between align-items-center">
-            {/* <!-- Checkbox --> */}
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
-            </div>
-          </div>
-
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg"
-              style={{paddingLeft: "2.5rem", paddingRight: "2.5rem"}} onClick={profilesenddata}>Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                class="link-danger">Register</a></p>
-          </div>
-        </form>
-      </div>
+    <div class="fadeIn first p-5" style={{padding:"30px"}}>
+    <i class="fa fa-solid fa-user" style={{fontSize:"42px"}}></i>
     </div>
+
+    <form onSubmit={handleSubmit}>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" onChange={(e)=>{
+         setusername(e.target.value);
+      }}/>
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" onChange={(e)=>{
+        setpassword(e.target.value);
+      }}/>
+      <input type="submit" class="fadeIn fourth" value="Log In" />
+    </form>
+
+    {/* <!-- Remind Passowrd --> */}
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
   </div>
-  <div
-    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-    {/* <!-- Copyright --> */}
-    <div class="text-white mb-3 mb-md-0">
-      Copyright © 2020. All rights reserved.
-    </div>
-    {/* <!-- Copyright -->
-
-    <!-- Right --> */}
-    <div>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="#!" class="text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
-    {/* <!-- Right --> */}
-  </div>
+</div>
 </section>
   )
 }
