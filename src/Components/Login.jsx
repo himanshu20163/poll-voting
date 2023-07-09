@@ -28,7 +28,7 @@ const Login = ({setlogincheck}) => {
   
       try {
         // Make a POST request to add a new user
-        const response = await axios.post('https://poll-voting-seven.vercel.app:4000/users', {
+        const response = await axios.post('http//localhost:4000/users', {
           username,
           password
         });
