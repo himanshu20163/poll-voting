@@ -13,6 +13,7 @@
     background-repeat: repeat   ;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 .cards {
     background-color: #e9e9e9;

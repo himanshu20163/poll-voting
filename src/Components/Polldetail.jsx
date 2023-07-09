@@ -7,34 +7,22 @@ import mystore from '../Redux/Store';
 
 const Polldetail = () => {
 
-  const [tiles, setTiles] = useState([]);
   const [isRankSet, setIsRankSet] = useState(false);
-  const [recorrdsdata, setrecorrdsdata] = useState([]);
-  const [Count, setCount] = useState(0);
+  const [reposData, setReposData] = useState([]);
 
   const data = useSelector((ele) => {
     return ele;
   });
-  const [reposData, setReposData] = useState([]);
+
+  useEffect(()=>{
+    
+    setReposData(data.alldishdata);
+  },[reposData])
+ 
     console.log(data.alldishdata)
 
     const rankdata = (index) => {
-      const updatedTiles = [...tiles];
-      updatedTiles[index].hidden = true;
-      setrecorrdsdata([...recorrdsdata,updatedTiles[index]]);
-      console.log(recorrdsdata);
-      if(Count == 2){
-          setIsRankSet(true);
-      }
-      else{
-          setCount(Count+1);
-      }
-      const actionObject = {
-        type: 'alldishdata',
-      //   payload: updatedTiles[index],
-      payload:recorrdsdata
-      };
-      mystore.dispatch(actionObject);
+      
     };
 
   return (
@@ -42,7 +30,7 @@ const Polldetail = () => {
       <Navbar />
       <div className='maincontentuser'>
       <div className="dish-card">
-        {data.alldishdata.sort((a, b) => b.value - a.value).map((e, index) => {
+        {reposData.sort((a, b) => b.value - a.value).map((e, index) => {
           return (
             <div class="card" style={{ width: '400px' }} key={index}>
               <img
@@ -70,9 +58,9 @@ const Polldetail = () => {
                         <div className="col-lg-4">
                           <button
                             className="btn btn-primary"
-                            style={{ width: '100%' }}
-                            value={40}
-                            onClick={() => rankdata(index)}
+                            style={{ width: '100%',backgroundColor: e.value === 30 ? "green" : "",color:"white" }}
+                            value={e.value}
+                            onClick={() => e.value=30}
                             disabled={isRankSet}
                           >
                             Rank 1
@@ -81,9 +69,9 @@ const Polldetail = () => {
                         <div className="col-lg-4">
                           <button
                             className="btn btn-primary"
-                            style={{ width: '100%' }}
-                            value="20"
-                            onClick={() => rankdata(index)}
+                            style={{ width: '100%' ,backgroundColor: e.value === 20 ? "green" : "",color:"white"}}
+                            value={e.value}
+                            onClick={() => e.value=40}
                             disabled={isRankSet}
                           >
                             Rank 2
@@ -92,9 +80,9 @@ const Polldetail = () => {
                         <div className="col-lg-4">
                           <button
                             className="btn btn-primary"
-                            style={{ width: '100%' }}
-                            value="10"
-                            onClick={() => rankdata(index)}
+                            style={{ width: '100%',backgroundColor: e.value === 10 ? "green" : "",color:"white" }}
+                            value={e.value}
+                            // onClick={() => rankdata(index)}
                             disabled={isRankSet}
                           >
                             Rank 3

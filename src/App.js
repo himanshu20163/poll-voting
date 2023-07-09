@@ -17,7 +17,7 @@ function App() {
         <Routes>
             <Route path='/' element={logincheck ? < Navigate to="/home" /> : < Login setlogincheck={setlogincheck} />} />
             <Route path='/home' element={logincheck ? < Home setdetaildata={setdetaildata} sethomedata={sethomedata} /> : <Navigate to="/" />} />
-            <Route path='/userdetail' element={logincheck ? <Polldetail /> : < Navigate to="/" />} />
+            <Route path='/polldetail' element={logincheck ? <Polldetail /> : < Navigate to="/" />} />
         </Routes>
     </>
     );
