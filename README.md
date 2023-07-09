@@ -6,13 +6,17 @@ with i have use bootstraped css framwork to ready my UI  part
 
 First of all let's talk about db.json file which I set data static one in object way because after this we will talk about login component which user login will use data in my json server.
 
+
+
 # Routing part
 I created the routing part in which first we added the uski library then wrapped usko from browserroute in the index file iske badd imported the route route in the app component after that routed the home poll details in which we clicked in it but move in that component
 
-# App with login Component
+# App with login  Component
 In App component I have created all routes in which I have used ternary operator in which login and logout authentication can work properly.
 Login component created when i need login and passoword field is set  when  user without login  goto home component user can not got to home component first 
 login after goto home component save data to json server i create use state this check to login authication then the value of that state becomes true and my home component gets rendered
+
+logout statevalue false goto the login component
 
 # Home Component
 
