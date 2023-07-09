@@ -1,67 +1,33 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Let's start poll dish project
+In which first of all we talk, we first prepared the react app, after that I installed whatever dependencies were required in it, such as axios, react-router-dom, redux, react-redux and json server in my project. watch added
+with i have use bootstraped css framwork to ready my UI  part
 
-## Available Scripts
+First of all let's talk about db.json file which I set data static one in object way because after this we will talk about login component which user login will use data in my json server.
 
-In the project directory, you can run:
+# Routing part
+I created the routing part in which first we added the uski library then wrapped usko from browserroute in the index file iske badd imported the route route in the app component after that routed the home poll details in which we clicked in it but move in that component
 
-### `npm start`
+# App with login Component
+In App component I have created all routes in which I have used ternary operator in which login and logout authentication can work properly.
+Login component created when i need login and passoword field is set  when  user without login  goto home component user can not got to home component first 
+login after goto home component save data to json server i create use state this check to login authication then the value of that state becomes true and my home component gets rendered
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Home Component
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Home component require data fetch show data from api in which I used useffect and usestate hook which help to home component ready .
+ I have used 3 usestate one in which I am saving all card data secondly I am saving rank in my sate from 3rd state I am storing data in redux
+If we talk about the first state, then I have passed a function inside usseffect, in which as soon as the home component is rendered, that function will be called, that function will fetch the api and return a promise, and store the data in json format
 
-### `npm test`
+## Rating click on home Component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In the App component, when it is clicked on a rating, then first we will store its data in one of the variables, we will hide that particular index from that data, we are getting this index through the map function on clicking the button, from that in the data. I will dispatch in the store.
 
-### `npm run build`
+# poll Component
+Poll details component in which we will fetch the data from redox and show it in descending order but the user will have the option to change the poll
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
